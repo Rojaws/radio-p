@@ -1,10 +1,13 @@
 let Esteban = 0
 let Nave = 0
 input.onButtonPressed(Button.A, function () {
-    basic.showString("T")
     Esteban += 1
-    for (let index = 0; index < 4; index++) {
+    if (Esteban < 4) {
+        basic.showString("T")
         basic.showNumber(input.temperature())
+    }
+    for (let index = 0; index < 4; index++) {
+    	
     }
     if (Esteban == 4) {
         radio.sendString("Russ")
@@ -18,16 +21,19 @@ input.onButtonPressed(Button.AB, function () {
     }
 })
 radio.onReceivedString(function (receivedString) {
-    basic.showString(receivedString)
+    for (let index = 0; index < 4; index++) {
+        basic.showString(receivedString)
+    }
 })
 input.onButtonPressed(Button.B, function () {
-    basic.showString("L")
     Nave += 1
-    for (let index = 0; index < 4; index++) {
+    if (Nave < 4) {
+        basic.showString("L")
         basic.showNumber(input.lightLevel())
     }
     if (Nave == 4) {
         radio.sendString("Mario")
+        basic.showIcon(IconNames.Heart)
     }
     if (Nave == 5) {
         radio.sendString("" + (input.temperature()))
